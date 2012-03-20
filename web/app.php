@@ -1,9 +1,11 @@
 <?php
 
-require_once __DIR__ . '/../src/Codemotion/Model/TaskManager.php';
-require_once __DIR__ . '/../src/Codemotion/Model/Task.php';
+require_once __DIR__ . '/../app/autoload.php';
 
-$taskManager = new \Codemotion\Model\TaskManager();
+use Codemotion\Model\TaskManager;
+
+// Recogemos los datos
+$taskManager = new TaskManager();
 $tasks = $taskManager->getAll();
 
 /* Enviamos la cabecera HTTP con estado OK (200) */
