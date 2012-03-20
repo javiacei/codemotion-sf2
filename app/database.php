@@ -24,3 +24,4 @@ $connectionOptions = array(
     'password' => ''
 );
 
+$em = EntityManager::create($connectionOptions, $config);
