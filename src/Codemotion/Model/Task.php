@@ -2,9 +2,26 @@
 
 namespace Codemotion\Model;
 
+/**
+ * @Entity @Table(name="task")
+ **/
 class Task
 {
+    /**
+     * @Id
+     * @Column(type="integer")
+     * @GeneratedValue
+     */
+    protected $id;
+
+    /**
+     * @Column(type="string")
+     */
     protected $name;
+
+    /**
+     * @Column(type="string")
+     */
     protected $state;
 
     public function setName($name)
@@ -25,10 +42,5 @@ class Task
     public function getState()
     {
         return $this->state;
-    }
-
-    public function setHours($hours)
-    {
-        $this->hours = $hours;
     }
 }
