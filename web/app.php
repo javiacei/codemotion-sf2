@@ -3,40 +3,27 @@
 require_once __DIR__ . '/../app/autoload.php';
 
 use Codemotion\Model\TaskManager;
+use Codemotion\Controller\TaskController;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 $request = Request::createFromGlobals();
 
-// Recogemos los datos
 $taskManager = new TaskManager();
+
+/* Controlador de tareas */
+$controller = new TaskController();
 
 /* Recogemos los datos */
 switch ($request->get('action', 'list')) {
     case 'list':
-        $template = 'list.php';
-
-        if ($name = $request->get('name')) {
-            $tasks = $taskManager->getByName($name);
-        } else {
-            $tasks = $taskManager->getAll();
-        }
+        $response = $controller->listAction($request);
         break;
     case 'show':
-        $template = 'show.php';
-        $task = $taskManager->getOneByName($request->get('name'));
+        $response = $controller->showAction($request);
         break;
 }
 
-/* Utilizamos Output Buffering para no enviar el contenido de la vista y lo recogemos
- * en la variable $content
- */
-ob_start();
-include __DIR__ . '/../src/Codemotion/View/Task/' . $template;
-$content = ob_get_clean();
-
-/* Enviamos la cabecera HTTP con estado OK (200) más los datos */
-$response = new Response($content);
+/* Enviamos el contenido */
 $response->prepare($request);
 $response->send();

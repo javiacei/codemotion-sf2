@@ -49,7 +49,7 @@
           <table class="table table-condensed">
             <thead><tr><th>Nombre</th><th>Estado</th><th>Acciones</th></tr></thead>
             <tbody>
-              <?php foreach ($tasks as $task): ?>
+              <?php foreach ($this->tasks as $task): ?>
               <tr>
                 <td><span><?php echo $task->getName(); ?></span></td>
                 <td><span class="label"><?php echo $task->getState(); ?></span></td>

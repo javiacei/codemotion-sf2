@@ -45,7 +45,7 @@
 
         <!-- Contenido general -->
         <div class="span9">
-        <h1>Tarea "<?php echo $task->getName() ?>"</h1>
+        <h1>Tarea "<?php echo $this->task->getName() ?>"</h1>
         </div>
       </div>
     </div>
