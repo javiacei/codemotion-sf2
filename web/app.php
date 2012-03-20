@@ -4,11 +4,15 @@ require_once __DIR__ . '/../app/autoload.php';
 
 use Codemotion\Model\TaskManager;
 
+use Symfony\Component\HttpFoundation\Request;
+
+$request = new Request($_GET, $_POST, array(), $_COOKIE, $_FILES, $_SERVER);
+
 // Recogemos los datos
 $taskManager = new TaskManager();
 
-if (isset($_GET['name']) && '' !== $_GET['name']) {
-    $tasks = $taskManager->getByName($_GET['name']);
+if ($name = $request->get('name')) {
+    $tasks = $taskManager->getByName($name);
 } else {
     $tasks = $taskManager->getAll();
 }
