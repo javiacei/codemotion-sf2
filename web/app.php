@@ -6,7 +6,7 @@ use Codemotion\Model\TaskManager;
 
 use Symfony\Component\HttpFoundation\Request;
 
-$request = new Request($_GET, $_POST, array(), $_COOKIE, $_FILES, $_SERVER);
+$request = Request::createFromGlobals();
 
 // Recogemos los datos
 $taskManager = new TaskManager();
