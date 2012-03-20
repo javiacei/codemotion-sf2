@@ -12,17 +12,28 @@ $request = Request::createFromGlobals();
 // Recogemos los datos
 $taskManager = new TaskManager();
 
-if ($name = $request->get('name')) {
-    $tasks = $taskManager->getByName($name);
-} else {
-    $tasks = $taskManager->getAll();
+/* Recogemos los datos */
+switch ($request->get('action', 'list')) {
+    case 'list':
+        $template = 'list.php';
+
+        if ($name = $request->get('name')) {
+            $tasks = $taskManager->getByName($name);
+        } else {
+            $tasks = $taskManager->getAll();
+        }
+        break;
+    case 'show':
+        $template = 'show.php';
+        $task = $taskManager->getOneByName($request->get('name'));
+        break;
 }
 
 /* Utilizamos Output Buffering para no enviar el contenido de la vista y lo recogemos
  * en la variable $content
  */
 ob_start();
-include __DIR__ . '/../src/Codemotion/View/Task/list.php';
+include __DIR__ . '/../src/Codemotion/View/Task/' . $template;
 $content = ob_get_clean();
 
 /* Enviamos la cabecera HTTP con estado OK (200) más los datos */

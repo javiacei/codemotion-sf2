@@ -43,4 +43,10 @@ class TaskManager
 
         return array_filter($tasks, $checkByName);
     }
+
+    public function getOneByName($name)
+    {
+        $tasks = $this->getByName($name, false);
+        return array_pop($tasks);
+    }
 }

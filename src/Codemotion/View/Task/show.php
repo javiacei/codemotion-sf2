@@ -7,9 +7,9 @@
     <meta name="author" content="Fco Javier Aceituno">
 
     <!-- styles -->
-    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="/assets/css/main.css" rel="stylesheet">
+    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
   </head>
 
   <body>
@@ -37,7 +37,7 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Tareas</li>
-              <li class="active"><a href="?action=list"><i class="icon-th-list"></i> Listado</a></li>
+              <li><a href="?action=list"><i class="icon-th-list"></i> Listado</a></li>
               <li><a href="#"><i class="icon-plus"></i> Crear nueva</a></li>
             </ul>
           </div>
@@ -45,19 +45,7 @@
 
         <!-- Contenido general -->
         <div class="span9">
-          <h1>Listado de tareas</h1>
-          <table class="table table-condensed">
-            <thead><tr><th>Nombre</th><th>Estado</th><th>Acciones</th></tr></thead>
-            <tbody>
-              <?php foreach ($tasks as $task): ?>
-              <tr>
-                <td><span><?php echo $task->getName(); ?></span></td>
-                <td><span class="label"><?php echo $task->getState(); ?></span></td>
-                <td><a href="?action=show&name=<?php echo $task->getName() ?>"><i class="icon-eye-open"></i></a></td>
-              </tr>
-              <?php endforeach; ?>
-            </tbody>
-          </table>
+        <h1>Tarea "<?php echo $task->getName() ?>"</h1>
         </div>
       </div>
     </div>
