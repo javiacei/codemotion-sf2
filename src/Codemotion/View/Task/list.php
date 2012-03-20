@@ -37,7 +37,7 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Tareas</li>
-              <li class="active"><a href="#"><i class="icon-th-list"></i> Listado</a></li>
+              <li class="active"><a href="/app.php"><i class="icon-th-list"></i> Listado</a></li>
               <li><a href="#"><i class="icon-plus"></i> Crear nueva</a></li>
             </ul>
           </div>

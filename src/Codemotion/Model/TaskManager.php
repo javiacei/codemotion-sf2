@@ -28,4 +28,19 @@ class TaskManager
 
         return $tasks;
     }
+
+    public function getByName($name, $like = true)
+    {
+        $tasks = $this->getAll();
+
+        $checkByName = function ($task) use ($name, $like) {
+            if (true === $like) {
+                return false !== strpos($task->getName(), $name);
+            }
+
+            return $name === $task->getName();
+        };
+
+        return array_filter($tasks, $checkByName);
+    }
 }
