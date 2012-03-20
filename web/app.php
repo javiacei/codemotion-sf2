@@ -10,18 +10,16 @@ use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\Routing\Route;
+use Symfony\Component\Routing\Loader\YamlFileLoader;
+
+use Symfony\Component\Config\FileLocator;
 
 $request = Request::createFromGlobals();
 
-$routes = new RouteCollection();
-$routes->add('task_list', new Route('/task/list', array(
-    'controller' => '\Codemotion\Controller\TaskController',
-    'action' => 'listAction'
-)));
-$routes->add('task_show', new Route('/task/{name}/show', array(
-    'controller' => '\Codemotion\Controller\TaskController',
-    'action' => 'showAction'
-)));
+/* Busca los ficheros de configuración dentro de la carpeta */
+$locator = new FileLocator(array(__DIR__ . '/../app/config'));
+$loader = new YamlFileLoader($locator);
+$routes = $loader->load('routing.yml');
 
 $context = new RequestContext();
 $context->fromRequest($request);

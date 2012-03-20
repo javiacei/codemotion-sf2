@@ -1,0 +1,11 @@
+task_list:
+    pattern: /task/list
+    defaults:
+        controller: '\Codemotion\Controller\TaskController'
+        action: 'listAction'
+
+task_show:
+    pattern: /task/{name}/show
+    defaults:
+        controller: '\Codemotion\Controller\TaskController'
+        action: 'showAction'
