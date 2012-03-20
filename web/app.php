@@ -2,14 +2,16 @@
 
 require_once __DIR__ . '/../app/autoload.php';
 
-use Codemotion\Model\TaskManager;
 use Codemotion\Controller\TaskController;
 
 use Symfony\Component\HttpFoundation\Request;
 
-$request = Request::createFromGlobals();
+use Symfony\Component\Routing\Matcher\UrlMatcher;
+use Symfony\Component\Routing\RequestContext;
+use Symfony\Component\Routing\RouteCollection;
+use Symfony\Component\Routing\Route;
 
-$taskManager = new TaskManager();
+$request = Request::createFromGlobals();
 
 /* Controlador de tareas */
 $controller = new TaskController();
