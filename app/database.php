@@ -14,3 +14,13 @@ $config->setProxyDir(__DIR__ . '/cache/doctrine');
 $config->setProxyNamespace('Codemotion\Proxies');
 
 $config->setAutoGenerateProxyClasses(true);
+
+$connectionOptions = array(
+    'driver' => 'pdo_mysql',
+    'host' => 'localhost',
+    'port' => '',
+    'dbname' => 'codemotion',
+    'user' => 'root',
+    'password' => ''
+);
+
