@@ -13,3 +13,15 @@
 [submodule "vendor/Symfony/Component/Yaml"]
 	path = vendor/Symfony/Component/Yaml
 	url = https://github.com/symfony/Yaml.git
+[submodule "vendor/doctrine"]
+	path = vendor/doctrine
+	url = https://github.com/doctrine/doctrine2.git
+[submodule "vendor/doctrine-common"]
+	path = vendor/doctrine-common
+	url = https://github.com/doctrine/common.git
+[submodule "vendor/doctrine-dbal"]
+	path = vendor/doctrine-dbal
+	url = https://github.com/doctrine/dbal.git
+[submodule "vendor/Symfony/Component/Console"]
+	path = vendor/Symfony/Component/Console
+	url = https://github.com/symfony/Console.git
