@@ -7,8 +7,8 @@
     <meta name="author" content="Fco Javier Aceituno">
 
     <!-- styles -->
-    <link href="/assets/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="/assets/bootstrap/css/bootstrap.responsive.css" rel="stylesheet">
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link href="/assets/css/main.css" rel="stylesheet">
   </head>
 
@@ -20,6 +20,9 @@
         <div class="container-fluid">
           <a class="brand" href="#">Gestor de tareas</a>
           <div class="nav-collapse">
+            <form method="get" class="navbar-search pull-left">
+              <input name='name' type="text" class="search-query" placeholder="Buscar">
+            </form>
             <p class="navbar-text pull-right">Symfony 2 y su ecosistema</p>
           </div><!--/.nav-collapse -->
         </div>
