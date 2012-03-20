@@ -6,7 +6,12 @@ use Codemotion\Model\TaskManager;
 
 // Recogemos los datos
 $taskManager = new TaskManager();
-$tasks = $taskManager->getAll();
+
+if (isset($_GET['name']) && '' !== $_GET['name']) {
+    $tasks = $taskManager->getByName($_GET['name']);
+} else {
+    $tasks = $taskManager->getAll();
+}
 
 /* Enviamos la cabecera HTTP con estado OK (200) */
 header('HTTP 1.0 200 OK');
