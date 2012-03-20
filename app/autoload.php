@@ -6,6 +6,7 @@ use Symfony\Component\ClassLoader\UniversalClassLoader;
 
 $loader = new UniversalClassLoader();
 $loader->registerNamespaces(array(
-    'Codemotion' => __DIR__ . '/../src'
+    'Codemotion' => __DIR__ . '/../src',
+    'Symfony' => __DIR__ . '/../vendor'
 ));
 $loader->register();
