@@ -5,6 +5,7 @@ require_once __DIR__ . '/../app/autoload.php';
 use Codemotion\Model\TaskManager;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 $request = Request::createFromGlobals();
 
@@ -24,10 +25,7 @@ ob_start();
 include __DIR__ . '/../src/Codemotion/View/Task/list.php';
 $content = ob_get_clean();
 
-/* Enviamos la cabecera HTTP con estado OK (200) */
-header('HTTP 1.0 200 OK');
-header('Content-Type: text/html UTF-8');
-$now = new \DateTime();
-header(sprintf('date: /%s ', $now->format("Y-m-d H:i:s")));
-
-echo $content;
+/* Enviamos la cabecera HTTP con estado OK (200) más los datos */
+$response = new Response($content);
+$response->prepare($request);
+$response->send();
