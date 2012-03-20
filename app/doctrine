@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/autoload.php';
+require_once __DIR__ . '/database.php';
+
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
+use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
+use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
+use Symfony\Component\Console\Helper\HelperSet;
+
+$helperSet = new HelperSet(array(
+    'db' => new ConnectionHelper($em->getConnection()),
+    'em' => new EntityManagerHelper($em)
+));
+
+ConsoleRunner::run($helperSet);
