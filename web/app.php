@@ -13,18 +13,28 @@ use Symfony\Component\Routing\Route;
 
 $request = Request::createFromGlobals();
 
-/* Controlador de tareas */
-$controller = new TaskController();
+$routes = new RouteCollection();
+$routes->add('task_list', new Route('/task/list', array(
+    'controller' => '\Codemotion\Controller\TaskController',
+    'action' => 'listAction'
+)));
+$routes->add('task_show', new Route('/task/{name}/show', array(
+    'controller' => '\Codemotion\Controller\TaskController',
+    'action' => 'showAction'
+)));
 
-/* Recogemos los datos */
-switch ($request->get('action', 'list')) {
-    case 'list':
-        $response = $controller->listAction($request);
-        break;
-    case 'show':
-        $response = $controller->showAction($request);
-        break;
-}
+$context = new RequestContext();
+$context->fromRequest($request);
+$matcher = new UrlMatcher($routes, $context);
+$parameters = $matcher->match($request->getPathInfo());
+
+$controller = new $parameters['controller'];
+$action     = $parameters['action'];
+
+/* Introducimos los parametros de la ruta en los atributos del objeto request */
+$request->attributes->add($parameters);
+
+$response = $controller->$action($request);
 
 /* Enviamos el contenido */
 $response->prepare($request);

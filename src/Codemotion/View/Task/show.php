@@ -7,9 +7,9 @@
     <meta name="author" content="Fco Javier Aceituno">
 
     <!-- styles -->
-    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="/assets/css/main.css" rel="stylesheet">
   </head>
 
   <body>
@@ -37,7 +37,7 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Tareas</li>
-              <li><a href="?action=list"><i class="icon-th-list"></i> Listado</a></li>
+              <li class="active"><a href="/app.php/task/list"><i class="icon-th-list"></i> Listado</a></li>
               <li><a href="#"><i class="icon-plus"></i> Crear nueva</a></li>
             </ul>
           </div>

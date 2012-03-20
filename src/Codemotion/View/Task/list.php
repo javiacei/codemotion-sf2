@@ -37,7 +37,7 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Tareas</li>
-              <li class="active"><a href="?action=list"><i class="icon-th-list"></i> Listado</a></li>
+              <li class="active"><a href="/app.php/task/list"><i class="icon-th-list"></i> Listado</a></li>
               <li><a href="#"><i class="icon-plus"></i> Crear nueva</a></li>
             </ul>
           </div>
@@ -53,7 +53,7 @@
               <tr>
                 <td><span><?php echo $task->getName(); ?></span></td>
                 <td><span class="label"><?php echo $task->getState(); ?></span></td>
-                <td><a href="?action=show&name=<?php echo $task->getName() ?>"><i class="icon-eye-open"></i></a></td>
+                <td><a href="/app.php/task/<?php echo $task->getName() ?>/show"><i class="icon-eye-open"></i></a></td>
               </tr>
               <?php endforeach; ?>
             </tbody>
