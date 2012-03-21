@@ -16,3 +16,6 @@ $loader = new XmlFileLoader(
 $loader->load('twig.xml');
 $container->setParameter('twig.cache_dir', __DIR__ . '/../app/cache/twig');
 $container->setParameter('twig.views_dir', __DIR__ . '/../src/Codemotion/View');
+
+/* Configuración Request */
+$loader->load('request.xml');
