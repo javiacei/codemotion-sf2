@@ -4,6 +4,7 @@ namespace Codemotion\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Doctrine\ORM\EntityManager;
 
@@ -51,5 +52,25 @@ class TaskController
         $this->task = $taskManager->getOneByName($request->get('name'));
 
         return $this->renderView('show');
+    }
+
+    public function deleteAction(Request $request)
+    {
+        $taskManager = new TaskManager($this->getEntityManager());
+        $task = $taskManager->getOneByName($request->get('name'));
+
+        $taskManager->deleteTask($task);
+
+        return new RedirectResponse('/app.php/task/list');
+    }
+
+    public function createAction(Request $request)
+    {
+        $taskManager = new TaskManager($this->getEntityManager());
+
+        $task = $taskManager->createTask('Tarea ' . uniqid(), "Descripción ...");
+        $taskManager->updateTask($task);
+
+        return new RedirectResponse('/app.php/task/list');
     }
 }

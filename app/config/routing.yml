@@ -9,3 +9,15 @@ task_show:
     defaults:
         controller: '\Codemotion\Controller\TaskController'
         action: 'showAction'
+
+task_create:
+    pattern: /task/create
+    defaults:
+        controller: '\Codemotion\Controller\TaskController'
+        action: 'createAction'
+
+task_delete:
+    pattern: /task/{name}/delete
+    defaults:
+        controller: '\Codemotion\Controller\TaskController'
+        action: 'deleteAction'

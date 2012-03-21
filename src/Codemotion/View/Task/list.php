@@ -38,7 +38,7 @@
             <ul class="nav nav-list">
               <li class="nav-header">Tareas</li>
               <li class="active"><a href="/app.php/task/list"><i class="icon-th-list"></i> Listado</a></li>
-              <li><a href="#"><i class="icon-plus"></i> Crear nueva</a></li>
+              <li><a href="/app.php/task/create"><i class="icon-plus"></i> Crear nueva</a></li>
             </ul>
           </div>
         </div>
@@ -53,7 +53,10 @@
               <tr>
                 <td><span><?php echo $task->getName(); ?></span></td>
                 <td><span class="label"><?php echo $task->getState(); ?></span></td>
-                <td><a href="/app.php/task/<?php echo $task->getName() ?>/show"><i class="icon-eye-open"></i></a></td>
+                <td>
+                  <a href="/app.php/task/<?php echo $task->getName() ?>/show"><i class="icon-eye-open"></i></a>
+                  <a href="/app.php/task/<?php echo $task->getName() ?>/delete"><i class="icon-trash"></i></a>
+                </td>
               </tr>
               <?php endforeach; ?>
             </tbody>

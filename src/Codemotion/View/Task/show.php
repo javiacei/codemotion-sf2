@@ -38,7 +38,7 @@
             <ul class="nav nav-list">
               <li class="nav-header">Tareas</li>
               <li class="active"><a href="/app.php/task/list"><i class="icon-th-list"></i> Listado</a></li>
-              <li><a href="#"><i class="icon-plus"></i> Crear nueva</a></li>
+              <li><a href="/app.php/task/create"><i class="icon-plus"></i> Crear nueva</a></li>
             </ul>
           </div>
         </div>

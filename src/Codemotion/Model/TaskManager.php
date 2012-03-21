@@ -28,6 +28,20 @@ class TaskManager
         return $task;
     }
 
+    public function updateTask(Task $task, $andFlush = true)
+    {
+        $this->em->persist($task);
+        if (true === $andFlush) {
+            $this->em->flush();
+        }
+    }
+
+    public function deleteTask(Task $task)
+    {
+        $this->em->remove($task);
+        $this->em->flush();
+    }
+
     /**
      * @return \Doctrine\Common\Collection\ArrayCollection
      */
@@ -56,6 +70,6 @@ class TaskManager
      */
     public function getOneByName($name)
     {
-        return $this->repository->findOneBy($name);
+        return $this->repository->findOneByName($name);
     }
 }
