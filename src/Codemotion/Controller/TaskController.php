@@ -5,10 +5,24 @@ namespace Codemotion\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+use Doctrine\ORM\EntityManager;
+
 use Codemotion\Model\TaskManager;
 
 class TaskController
 {
+    protected $em;
+
+    public function setEntityManager(EntityManager $em)
+    {
+        $this->em = $em;
+    }
+
+    public function getEntityManager()
+    {
+        return $this->em;
+    }
+
     protected function renderView($template, array $vars = array())
     {
         ob_start();

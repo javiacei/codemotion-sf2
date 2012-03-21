@@ -31,6 +31,9 @@ $parameters = $router->match($request->getPathInfo());
 $controller = new $parameters['controller'];
 $action     = $parameters['action'];
 
+/* Dependencias del controlador */
+$controller->setEntityManager($em);
+
 /* Introducimos los parametros de la ruta en los atributos del objeto request */
 $request->attributes->add($parameters);
 
