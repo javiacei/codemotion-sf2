@@ -37,7 +37,7 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Tareas</li>
-              <li class="active"><a href="/app.php/task/list"><i class="icon-th-list"></i> Listado</a></li>
+              <li><a href="/app.php/task/list"><i class="icon-th-list"></i> Listado</a></li>
               <li><a href="/app.php/task/create"><i class="icon-plus"></i> Crear nueva</a></li>
             </ul>
           </div>
@@ -45,13 +45,14 @@
 
         <!-- Contenido general -->
         <div class="span9">
-        <h1>Tarea "<?php echo $this->task->getName() ?>"</h1>
+          <h1>Tarea "{{ task.name }}"</h1>
+          <span>{{ task.description }}</span>
 
         <h6>Subtareas:</h6>
         <ol>
-          <?php foreach ($this->task->getItems() as $item): ?>
-            <li><?php echo $item->getName() ?></li>
-          <?php endforeach; ?>
+          {% for item in task.items %}
+            <li>{{ item.name }}</li>
+          {% endfor %}
         </ol>
         </div>
       </div>

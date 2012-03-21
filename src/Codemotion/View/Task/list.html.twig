@@ -46,29 +46,28 @@
         <!-- Contenido general -->
         <div class="span9">
           <h1>Listado de tareas</h1>
-          <table class="table table-condensed">
-            <thead><tr><th>Nombre</th><th>Subtareas</th><th>Estado</th><th>Acciones</th></tr></thead>
-            <tbody>
-              <?php foreach ($this->tasks as $task): ?>
-              <tr>
-                <td><span><?php echo $task->getName(); ?></span></td>
-
-                <!-- Listado de items -->
-                <td>
-                    <?php foreach ($task->getItems() as $item): ?>
-                    <span class="label label-info"><?php echo $item->getName() ?></span>
-                    <?php endforeach; ?>
-                </td>
-
-                <td><span class="label"><?php echo $task->getState(); ?></span></td>
-                <td>
-                  <a href="/app.php/task/<?php echo $task->getName() ?>/show"><i class="icon-eye-open"></i></a>
-                  <a href="/app.php/task/<?php echo $task->getName() ?>/delete"><i class="icon-trash"></i></a>
-                </td>
-              </tr>
-              <?php endforeach; ?>
-            </tbody>
-          </table>
+          {% if tasks|length > 0 %}
+            <table class="table table-condensed">
+              <thead><tr><th>Nombre</th><th>Subtareas</th><th>Estado</th><th>Acciones</th></tr></thead>
+              <tbody>
+                {% for task in tasks %}
+                <tr>
+                  <td><span>{{ task.name }}</span></td>
+                  <td>
+                      {% for item in task.items %}
+                        <span class="label label-info">{{ item.name }}</span>
+                      {% endfor %}
+                  </td>
+                  <td><span class="label">{{ task.state }}</span></td>
+                  <td>
+                      <a href="/app.php/task/{{ task.name }}/show"><i class="icon-eye-open"></i></a>
+                      <a href="/app.php/task/{{ task.name }}/delete"><i class="icon-trash"></i></a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          {% endif %}
         </div>
       </div>
     </div>
