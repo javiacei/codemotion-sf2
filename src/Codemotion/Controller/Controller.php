@@ -33,10 +33,7 @@ abstract class Controller
 
     protected function renderView($template, array $vars = array())
     {
-        ob_start();
-        include __DIR__ . '/../View/Task/' . $template . '.php';
-        $content = ob_get_clean();
-
+        $content = $this->getTemplating()->render('Task/' . $template . '.html.twig', $vars);
         return new Response($content);
     }
 }

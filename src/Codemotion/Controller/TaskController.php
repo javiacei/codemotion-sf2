@@ -18,20 +18,20 @@ class TaskController extends Controller
         $taskManager = new TaskManager($this->getEntityManager());
 
         if ($name = $request->get('name')) {
-            $this->tasks = $taskManager->getByName($name);
+            $tasks = $taskManager->getByName($name);
         } else {
-            $this->tasks = $taskManager->getAll();
+            $tasks = $taskManager->getAll();
         }
 
-        return $this->renderView('list');
+        return $this->renderView('list', array('tasks' => $tasks));
     }
 
     public function showAction(Request $request)
     {
         $taskManager = new TaskManager($this->getEntityManager());
-        $this->task = $taskManager->getOneByName($request->get('name'));
+        $task = $taskManager->getOneByName($request->get('name'));
 
-        return $this->renderView('show');
+        return $this->renderView('show', array('task' => $task));
     }
 
     public function deleteAction(Request $request)
