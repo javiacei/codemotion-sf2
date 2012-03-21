@@ -42,9 +42,7 @@ class TaskManager
     public function getByName($name, $like = true)
     {
         if (false === $like) {
-            return $this->repository->findBy(array(
-                'name' => $name
-          ));
+            return $this->repository->findByName($name);
         }
 
         return $this->em
@@ -58,8 +56,6 @@ class TaskManager
      */
     public function getOneByName($name)
     {
-        return $this->repository->findOneBy(array(
-            'name' => $name
-        ));
+        return $this->repository->findOneBy($name);
     }
 }
