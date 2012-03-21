@@ -28,3 +28,6 @@
 [submodule "vendor/twig"]
 	path = vendor/twig
 	url = git://github.com/fabpot/Twig.git
+[submodule "vendor/Symfony/Component/DependencyInjection"]
+	path = vendor/Symfony/Component/DependencyInjection
+	url = https://github.com/symfony/DependencyInjection
