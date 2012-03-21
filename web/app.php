@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../app/autoload.php';
+require_once __DIR__ . '/../app/bootstrap.php';
 require_once __DIR__ . '/../app/database.php';
 
 use Codemotion\Controller\TaskController;
@@ -28,12 +28,6 @@ $router = new Router(
     $context
   );
 
-/* TWIG  */
-$twigLoader = new Twig_Loader_Filesystem(__DIR__ . '/../src/Codemotion/View');
-$twig = new Twig_Environment($twigLoader, array(
-  'cache' => __DIR__ . '/../app/cache/twig',
-));
-
 $parameters = $router->match($request->getPathInfo());
 
 $controller = new $parameters['controller'];
@@ -41,7 +35,7 @@ $action     = $parameters['action'];
 
 /* Dependencias del controlador */
 $controller->setEntityManager($em);
-$controller->setTemplating($twig);
+$controller->setTemplating($container->get('twig'));
 
 /* Introducimos los parametros de la ruta en los atributos del objeto request */
 $request->attributes->add($parameters);
