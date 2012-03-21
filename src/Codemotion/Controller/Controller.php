@@ -11,6 +11,8 @@ abstract class Controller
 
     protected $templating;
 
+    protected $routing;
+
     public function setEntityManager(EntityManager $em)
     {
         $this->em = $em;
@@ -29,6 +31,16 @@ abstract class Controller
     public function getTemplating()
     {
         return $this->templating;
+    }
+
+    public function setRouting($routing)
+    {
+        $this->routing = $routing;
+    }
+
+    public function getRouting()
+    {
+        return $this->routing;
     }
 
     protected function renderView($template, array $vars = array())

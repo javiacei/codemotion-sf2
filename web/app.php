@@ -15,19 +15,7 @@ use Symfony\Component\Config\FileLocator;
 
 $request = $container->get('request');
 
-/*  ROUTING  */
-$locator = new FileLocator(array(__DIR__ . '/../app/config'));
-
-$context = new RequestContext();
-$context->fromRequest($request);
-
-$router = new Router(
-    new YamlFileLoader($locator),
-    "routing.yml",
-    array('cache_dir' => __DIR__.'/../app/cache/routing'),
-    $context
-  );
-
+$router = $container->get('routing');
 $parameters = $router->match($request->getPathInfo());
 
 $controller = new $parameters['controller'];
@@ -36,6 +24,7 @@ $action     = $parameters['action'];
 /* Dependencias del controlador */
 $controller->setEntityManager($em);
 $controller->setTemplating($container->get('twig'));
+$controller->setRouting($router);
 
 /* Introducimos los parametros de la ruta en los atributos del objeto request */
 $request->attributes->add($parameters);
