@@ -46,6 +46,13 @@
         <!-- Contenido general -->
         <div class="span9">
         <h1>Tarea "<?php echo $this->task->getName() ?>"</h1>
+
+        <h6>Subtareas:</h6>
+        <ol>
+          <?php foreach ($this->task->getItems() as $item): ?>
+            <li><?php echo $item->getName() ?></li>
+          <?php endforeach; ?>
+        </ol>
         </div>
       </div>
     </div>

@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Doctrine\ORM\EntityManager;
 
 use Codemotion\Model\TaskManager;
+use Codemotion\Model\Item;
 
 class TaskController
 {
@@ -69,6 +70,24 @@ class TaskController
         $taskManager = new TaskManager($this->getEntityManager());
 
         $task = $taskManager->createTask('Tarea ' . uniqid(), "Descripción ...");
+
+        /*  Asociación de items */
+        $randomItems = array(
+            'Subtarea ' . uniqid(),
+            'Subtarea ' . uniqid(),
+            'Subtarea ' . uniqid()
+        );
+
+        foreach ($randomItems as $itemName) {
+            // Cascade = "all" --> Los items se guardarán cuando se guarda la tarea.
+            $item = new Item();
+            $item->setName($itemName);
+
+            /* Relacción bidireccional */
+            $item->setTask($task);
+            $task->addItem($item);
+        }
+
         $taskManager->updateTask($task);
 
         return new RedirectResponse('/app.php/task/list');

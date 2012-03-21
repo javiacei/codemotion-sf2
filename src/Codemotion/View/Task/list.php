@@ -47,11 +47,19 @@
         <div class="span9">
           <h1>Listado de tareas</h1>
           <table class="table table-condensed">
-            <thead><tr><th>Nombre</th><th>Estado</th><th>Acciones</th></tr></thead>
+            <thead><tr><th>Nombre</th><th>Subtareas</th><th>Estado</th><th>Acciones</th></tr></thead>
             <tbody>
               <?php foreach ($this->tasks as $task): ?>
               <tr>
                 <td><span><?php echo $task->getName(); ?></span></td>
+
+                <!-- Listado de items -->
+                <td>
+                    <?php foreach ($task->getItems() as $item): ?>
+                    <span class="label label-info"><?php echo $item->getName() ?></span>
+                    <?php endforeach; ?>
+                </td>
+
                 <td><span class="label"><?php echo $task->getState(); ?></span></td>
                 <td>
                   <a href="/app.php/task/<?php echo $task->getName() ?>/show"><i class="icon-eye-open"></i></a>
