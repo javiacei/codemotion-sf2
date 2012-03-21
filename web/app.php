@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Router;
 
 use Symfony\Component\Config\FileLocator;
 
-$request = Request::createFromGlobals();
+$request = $container->get('request');
 
 /*  ROUTING  */
 $locator = new FileLocator(array(__DIR__ . '/../app/config'));
