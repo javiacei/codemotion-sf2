@@ -34,7 +34,7 @@ class TaskController
 
     public function listAction(Request $request)
     {
-        $taskManager = new TaskManager();
+        $taskManager = new TaskManager($this->getEntityManager());
 
         if ($name = $request->get('name')) {
             $this->tasks = $taskManager->getByName($name);
@@ -47,7 +47,7 @@ class TaskController
 
     public function showAction(Request $request)
     {
-        $taskManager = new TaskManager();
+        $taskManager = new TaskManager($this->getEntityManager());
         $this->task = $taskManager->getOneByName($request->get('name'));
 
         return $this->renderView('show');
