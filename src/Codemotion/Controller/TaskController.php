@@ -11,29 +11,8 @@ use Doctrine\ORM\EntityManager;
 use Codemotion\Model\TaskManager;
 use Codemotion\Model\Item;
 
-class TaskController
+class TaskController extends Controller
 {
-    protected $em;
-
-    public function setEntityManager(EntityManager $em)
-    {
-        $this->em = $em;
-    }
-
-    public function getEntityManager()
-    {
-        return $this->em;
-    }
-
-    protected function renderView($template, array $vars = array())
-    {
-        ob_start();
-        include __DIR__ . '/../View/Task/' . $template . '.php';
-        $content = ob_get_clean();
-
-        return new Response($content);
-    }
-
     public function listAction(Request $request)
     {
         $taskManager = new TaskManager($this->getEntityManager());
