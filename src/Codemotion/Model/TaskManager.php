@@ -28,36 +28,38 @@ class TaskManager
         return $task;
     }
 
+    /**
+     * @return \Doctrine\Common\Collection\ArrayCollection
+     */
     public function getAll()
     {
-        $tasks = array();
-        $taskNumber = 10;
-
-        for ($i = 1; $i <= $taskNumber; $i++) {
-            $tasks[] = $this->createTask('Tarea ' . $i);
-        }
-
-        return $tasks;
+        return $this->repository->findAll();
     }
 
+    /**
+     * @return \Doctrine\Common\Collection\ArrayCollection
+     */
     public function getByName($name, $like = true)
     {
-        $tasks = $this->getAll();
+        if (false === $like) {
+            return $this->repository->findBy(array(
+                'name' => $name
+          ));
+        }
 
-        $checkByName = function ($task) use ($name, $like) {
-            if (true === $like) {
-                return false !== strpos($task->getName(), $name);
-            }
-
-            return $name === $task->getName();
-        };
-
-        return array_filter($tasks, $checkByName);
+        return $this->em
+            ->createQuery("SELECT t FROM {$this->class} t WHERE t.name LIKE :name")
+            ->setParameter('name', "%$name%")
+            ->getResult();
     }
 
+    /**
+     * @return Codemotion\Model\Task (Proxy)
+     */
     public function getOneByName($name)
     {
-        $tasks = $this->getByName($name, false);
-        return array_pop($tasks);
+        return $this->repository->findOneBy(array(
+            'name' => $name
+        ));
     }
 }
