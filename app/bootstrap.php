@@ -25,3 +25,15 @@ $loader->load('routing.xml');
 $container->setParameter('routing.routes_dir', __DIR__ . '/config');
 $container->setParameter('routing.yaml_routes_file', 'routing.yml');
 $container->setParameter('routing.cache_dir', __DIR__ . '/cache/routing');
+
+/* Configuración Doctrine 2 */
+$loader->load('doctrine.xml');
+$container->setParameter('doctrine.entities_dir', __DIR__ . '/../src/Codemotion/Model');
+$container->setParameter('doctrine.proxy_dir', __DIR__ . '/cache/doctrine');
+$container->setParameter('doctrine.proxy_namespace', __DIR__ . 'Codemotion\Proxies');
+$container->setParameter('doctrine.dbal.driver', 'pdo_mysql');
+$container->setParameter('doctrine.dbal.host', 'localhost');
+$container->setParameter('doctrine.dbal.port', '');
+$container->setParameter('doctrine.dbal.dbname', 'codemotion');
+$container->setParameter('doctrine.dbal.user', 'root');
+$container->setParameter('doctrine.dbal.password', '');
