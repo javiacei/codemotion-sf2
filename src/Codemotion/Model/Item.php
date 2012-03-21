@@ -3,9 +3,9 @@
 namespace Codemotion\Model;
 
 /**
- * @Entity @Table(name="task")
+ * @Entity @Table(name="item")
  **/
-class Task
+class Item
 {
     /**
      * @Id
@@ -20,12 +20,8 @@ class Task
     protected $name;
 
     /**
-     * @Column(type="string")
+     * @ManyToOne(targetEntity="Task", inversedBy="items")
+     * @JoinColumn(name="task_id", referencedColumnName="id")
      */
-    protected $state;
-
-    /**
-     * @OneToMany(targetEntity="Item", mappedBy="task", cascade={"all"})
-     */
-    protected $items;
+    protected $task;
 }
