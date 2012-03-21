@@ -19,3 +19,9 @@ $container->setParameter('twig.views_dir', __DIR__ . '/../src/Codemotion/View');
 
 /* Configuración Request */
 $loader->load('request.xml');
+
+/* Configuración Routing */
+$loader->load('routing.xml');
+$container->setParameter('routing.routes_dir', __DIR__ . '/config');
+$container->setParameter('routing.yaml_routes_file', 'routing.yml');
+$container->setParameter('routing.cache_dir', __DIR__ . '/cache/routing');

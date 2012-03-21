@@ -1,0 +1,38 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services
+  http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+  <parameters>
+    <parameter key="routing.router.class">Symfony\Component\Routing\Router</parameter>
+    <parameter key="routing.locator.class">Symfony\Component\Config\FileLocator</parameter>
+    <parameter key="routing.yaml_loader.class">Symfony\Component\Routing\Loader\YamlFileLoader</parameter>
+    <parameter key="routing.request_context.class">Symfony\Component\Routing\RequestContext</parameter>
+  </parameters>
+
+  <services>
+    <service id="routing.locator" class="%routing.locator.class%">
+      <argument>%routing.routes_dir%</argument>
+    </service>
+
+    <service id="routing.request_context" class="%routing.request_context.class%">
+      <call method="fromRequest">
+        <argument type="service" id="request" />
+      </call>
+    </service>
+
+    <service id="routing.yaml_loader" class="%routing.yaml_loader.class%">
+      <argument type="service" id="routing.locator" />
+    </service>
+
+    <service id="routing" class="%routing.router.class%">
+      <argument type="service" id="routing.yaml_loader" />
+      <argument>%routing.yaml_routes_file%</argument>
+      <argument type="collection">
+        <argument key="cache_dir">%routing.cache_dir%</argument>
+      </argument>
+      <argument type="service" id="routing.request_context" />
+    </service>
+  </services>
+
+</container>
