@@ -37,3 +37,6 @@ $container->setParameter('doctrine.dbal.port', '');
 $container->setParameter('doctrine.dbal.dbname', 'codemotion');
 $container->setParameter('doctrine.dbal.user', 'root');
 $container->setParameter('doctrine.dbal.password', '');
+
+/* Configuración Codemotion (Gestor de tareas) */
+$loader->load('codemotion.xml');

@@ -3,10 +3,7 @@
 namespace Codemotion\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-
-use Doctrine\ORM\EntityManager;
 
 use Codemotion\Model\TaskManager;
 use Codemotion\Model\Item;
@@ -15,7 +12,7 @@ class TaskController extends Controller
 {
     public function listAction(Request $request)
     {
-        $taskManager = new TaskManager($this->getEntityManager());
+        $taskManager = $this->get('codemotion.task_manager');
 
         if ($name = $request->get('name')) {
             $tasks = $taskManager->getByName($name);
@@ -28,7 +25,7 @@ class TaskController extends Controller
 
     public function showAction(Request $request)
     {
-        $taskManager = new TaskManager($this->getEntityManager());
+        $taskManager = $this->get('codemotion.task_manager');
         $task = $taskManager->getOneByName($request->get('name'));
 
         return $this->renderView('show', array('task' => $task));
@@ -36,7 +33,7 @@ class TaskController extends Controller
 
     public function deleteAction(Request $request)
     {
-        $taskManager = new TaskManager($this->getEntityManager());
+        $taskManager = $this->get('codemotion.task_manager');
         $task = $taskManager->getOneByName($request->get('name'));
 
         $taskManager->deleteTask($task);
@@ -46,7 +43,7 @@ class TaskController extends Controller
 
     public function createAction(Request $request)
     {
-        $taskManager = new TaskManager($this->getEntityManager());
+        $taskManager = $this->get('codemotion.task_manager');
 
         $task = $taskManager->createTask('Tarea ' . uniqid(), "Descripción ...");
 

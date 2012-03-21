@@ -3,49 +3,24 @@
 namespace Codemotion\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
-use Doctrine\ORM\EntityManager;
 
 abstract class Controller
 {
-    protected $em;
+    protected $container;
 
-    protected $templating;
-
-    protected $routing;
-
-    public function setEntityManager(EntityManager $em)
+    public function setContainer($container)
     {
-        $this->em = $em;
+        $this->container = $container;
     }
 
-    public function getEntityManager()
+    public function get($service)
     {
-        return $this->em;
-    }
-
-    public function setTemplating($templating)
-    {
-        $this->templating = $templating;
-    }
-
-    public function getTemplating()
-    {
-        return $this->templating;
-    }
-
-    public function setRouting($routing)
-    {
-        $this->routing = $routing;
-    }
-
-    public function getRouting()
-    {
-        return $this->routing;
+        return $this->container->get($service);
     }
 
     protected function renderView($template, array $vars = array())
     {
-        $content = $this->getTemplating()->render('Task/' . $template . '.html.twig', $vars);
+        $content = $this->get('twig')->render('Task/' . $template . '.html.twig', $vars);
         return new Response($content);
     }
 }
